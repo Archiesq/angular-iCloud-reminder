@@ -1,0 +1,73 @@
+<!-- 事件列表的增删改查  增--点击+左侧新增(颜色是有规律的)
+                    删--删除之后显示第一个
+                        当只剩一个的时候提示无法删除
+                    改--可以改标题和颜色
+                        改完之后全页面都需要更新
+                    查--发生在点击的时候
+                        需要列出已完成条目
+                        未完成条目
+                        分组显示已完成，未完成
+增删改查都是对当前事件列表的操作
+条目的增删改查  增--需要注意增加到当前时间列表中
+                删
+                改--双击条目修改值 如果值为空 这个条目消失 -->
+<!DOCTYPE html>
+<html lang="en"ng-app="reminder">
+<head>
+	<meta charset="UTF-8">
+	<title>iCloud Remider</title>
+	<script src="js/angular.js"></script>
+    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body ng-controller="rdCtrl">
+	<div class="zuo">
+        <div class="title">
+        <span>iCloud</span>
+        <span ng-click="addshijian()">+</span>
+        </div>
+        <ul>
+            <li ng-repeat="value in shijianliebiao track by $index"ng-click="showshijian($index)">
+               <span ng-class="value.color"></span>
+               <span>{{value.name}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="you" ng-class="shijianliebiao[clistindex].color">
+        <input type="text" ng-model="key">
+        <hr>
+        <div ng-show="key">
+            <h1>这是“{{key}}”的搜索结果</h1>
+            <dl ng-repeat="value in shijianliebiao|search:key">
+            <dt>{{value.name}}</dt>
+            <dd ng-repeat=" r in value.items">{{r.title}}</dd>
+                
+            </dl>
+        </div>
+        <div ng-hide="key">
+        <button ng-click="delliebiao()">删除列表</button>
+        <input  type="text" ng-blur="save()" ng-model="shijianliebiao[clistindex].name">
+        <span ng-repeat="value in colors" class="yuandian" ng-class="value" ng-click="shijianliebiao[clistindex].color = value"></span>
+        
+        <h1>{{shijianliebiao[clistindex].name}}</h1>
+        <div class="done-item">已完成:<span>{{countDone()}}</span></div>
+        <ul>
+            <li ng-repeat="value in shijianliebiao[clistindex].items track by $index" ng-show="value.isDone">
+                <span ng-click="value.isDone = false;save()">{{value.isDone}}</span>
+                 <input type="text" ng-blur="save()" ng-model="value.title">
+                <button ng-click="deleteTodo($index)">删除</button> 
+            </li>
+        </ul>
+        <hr>
+        <ul>
+            <li ng-repeat="value in shijianliebiao[clistindex].items track by $index" ng-hide="value.isDone">
+                <span ng-click="value.isDone = true;save()">{{value.isDone}}</span> 
+        <input type="text" ng-blur="save()" ng-model="value.title">
+        <button ng-click="deleteTodo($index)">删除</button>   
+            </li>
+        </ul>
+        <div class="new-item" ng-click="addTodo()">点击添加新条目</div>
+        </div>
+    </div>
+</body>
+</html>

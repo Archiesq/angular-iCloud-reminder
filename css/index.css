@@ -1,0 +1,79 @@
+.zuo{
+	width: 300px;
+	position:absolute;
+	top:0;
+	bottom:0;
+	background: #383836;
+	color: #fff;
+}
+*{
+	cursor:default;
+}
+ul,li{
+	list-style: none;
+}
+body{
+	margin:0;
+}
+.zuo>.title{
+	padding: 20px;
+	color:#fff;
+	font-size: 40px
+}
+.zuo>ul>li{
+	padding: 20px;
+	font-size: 20px;
+	border-bottom:1px solid #fff;
+
+}
+.zuo>ul>li>span:first-child{
+	display: inline-block;
+	padding: 8px;
+}
+div.you{
+	background:none;
+}
+.you{
+	position: absolute;
+	left: 300px;
+	top:0;
+	bottom: 0;
+	right: 0;
+	background: #ccc;
+	padding: 40px;
+}
+.red{
+	background:red;
+	color:red;
+}
+.yellow{
+	background:yellow;
+	color:yellow;
+}
+.blue{
+	background:blue;
+	color:blue;
+}
+.green{
+	background:green;
+	color:green;
+}
+.orange{
+	background:orange;
+	color:orange;
+}
+.purple{
+	background:purple;
+	color:purple;
+}
+.brow{
+	background:pink;
+	color:pink
+}
+.yuandian{
+    display: inline-block;
+    width:20px;
+    height: 20px;
+    margin-right:10px;
+    border-radius: 50%;
+}
